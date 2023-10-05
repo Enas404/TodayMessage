@@ -55,7 +55,7 @@
   
     do {
       surahNumber = Math.floor(Math.random() * 114) + 1;
-      const responseMeta = await axios.get(`http://api.alquran.cloud/v1/surah/${surahNumber}`);
+      const responseMeta = await axios.get(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
   
       if (responseMeta.data && responseMeta.data.data) {
         const ayahCount = responseMeta.data.data.numberOfAyahs;
@@ -63,7 +63,7 @@
       }
       // Corrected code
 try {
-    const response = await axios.get('http://api.alquran.cloud/v1/edition?format=audio&language=ar');
+    const response = await axios.get('https://api.alquran.cloud/v1/edition?format=audio&language=ar');
     if (response.data && response.data.data && response.data.data.length > 0) {
         audioEdition.value = response.data.data[0].identifier; // Use audioEdition.value
     }
@@ -72,14 +72,14 @@ try {
 }
 
   
-      const responseArabic = await axios.get(`http://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumber}/${audioEdition.value}`);
+      const responseArabic = await axios.get(`https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumber}/${audioEdition.value}`);
       if (responseArabic.data && responseArabic.data.data) {
         ayah.value = responseArabic.data.data;
       }
     } while (!ayah.value || containsKeyword(ayah.value.text));
   
     try {
-      const responseTafsir = await axios.get(`http://api.quran-tafseer.com/tafseer/1/${surahNumber}/${ayahNumber}`);
+      const responseTafsir = await axios.get(`https://api.quran-tafseer.com/tafseer/1/${surahNumber}/${ayahNumber}`);
       if (responseTafsir.data && responseTafsir.data.text) {
         tafsir.value = { text: responseTafsir.data.text };
       }
